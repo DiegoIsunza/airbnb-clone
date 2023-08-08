@@ -10,6 +10,7 @@ import Image from 'next/image';
 
 import HeartButton from '../HeartButton';
 import Button from '../Button';
+import { title } from 'process';
 
 interface ListingCardProps {
     data: Listing;
@@ -74,6 +75,10 @@ const ListingCard: React.FC<ListingCardProps> = ({data, reservation, onAction, d
 
             <div className='font-semibold text-lg'>
                 {location?.region}, {location?.label}
+            </div>
+
+            <div className="font-light text-neutral-500">
+              {data.title}
             </div>
 
             <div className='font-light text-neutral-500'>
