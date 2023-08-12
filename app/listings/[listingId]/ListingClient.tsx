@@ -8,8 +8,7 @@ import { useRouter } from 'next/navigation';
 import { Range } from 'react-date-range';
 
 import { categories } from '@/app/components/navbar/Categories';
-import { SafeUser, safeListing } from '@/app/types';
-import { Reservation } from '@prisma/client';
+import { SafeUser, SafeListing, SafeReservation } from '@/app/types';
 import Container from '@/app/components/Container';
 import ListingHead from '@/app/components/listings/ListingHead';
 import ListingInfo from '@/app/components/listings/ListingInfo';
@@ -23,8 +22,8 @@ const initialDateRange ={
 };
 
 interface ListingClientProps {
-    reservations?: Reservation[];
-    listing: safeListing & {user : SafeUser};
+    reservations?: SafeReservation[];
+    listing: SafeListing & {user : SafeUser};
     currentUser?: SafeUser | null;
 };
 
@@ -68,7 +67,7 @@ const ListingClient: React.FC<ListingClientProps> = ({listing, reservations = []
       toast.success('Reservation created successfully!');
       setDateRange(initialDateRange);
       //Redirect to /trips
-      router.refresh();
+      router.push('/trips');
     })
     .catch((error) => {
       toast.error('Something went wrong');

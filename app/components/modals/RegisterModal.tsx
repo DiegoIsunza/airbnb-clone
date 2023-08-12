@@ -44,8 +44,9 @@ const RegisterModal = () => {
         setIsLoading(true);
         axios.post('api/register', data)
           .then(() => {
-            toast.success('Registered!');
+            toast.success('Success! Please log in.');
             registerModal.onClose();
+            loginModal.onOpen();
           })
           .catch((err) => {
             toast.error("User can't be created.");
